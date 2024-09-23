@@ -7,7 +7,7 @@ from pymongo import MongoClient
 API_KEY = ''
 BASE_URL = 'https://api.clashroyale.com/v1'
 
-client = MongoClient('mongodb//localhost/27017')
+client = MongoClient('mongodb://localhost:27017/')
 db = client['clash_royale']
 collection = db['players']
 
@@ -35,6 +35,7 @@ def get_player_info(player_tag):
         return res.json()
     else:
         print(f'Failed to fetch player info: {res.status_code}')
+        print(f'{res.reason}')
         return None
 
 
