@@ -1,13 +1,20 @@
 from urllib import response
 import requests
 import pymongo
-
+import os
+from dotenv import load_dotenv
 from pymongo import MongoClient
 
-API_KEY = ''
+load_dotenv()
+
+CLASH_ROYALE_API_KEY = os.getenv("CLASH_ROYALE_API_KEY_REMOTE")
+MONGO_URI = os.getenv("MONGO_URI")
+
+
+API_KEY = f'{CLASH_ROYALE_API_KEY}'
 BASE_URL = 'https://api.clashroyale.com/v1'
 
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient(f'{MONGO_URI}')
 db = client['clash_royale']
 collection = db['players']
 
@@ -17,7 +24,7 @@ headers = {
 
 
 def main():
-    player_tag = ''
+    player_tag = 'VRRYUQ8V0'
 
     player_info = get_player_info(player_tag)
 
