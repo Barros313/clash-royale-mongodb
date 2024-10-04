@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 CLASH_ROYALE_API_KEY = os.getenv("CLASH_ROYALE_API")
-print(CLASH_ROYALE_API_KEY)
 MONGO_URI = os.getenv("MONGO_URI")
 
 API_KEY = f'{CLASH_ROYALE_API_KEY}'
