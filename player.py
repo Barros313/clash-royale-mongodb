@@ -1,15 +1,16 @@
 from urllib import response
 import requests
 import pymongo
+from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
-from pymongo import MongoClient
+
 
 load_dotenv()
 
-CLASH_ROYALE_API_KEY = os.getenv("CLASH_ROYALE_API_KEY_REMOTE")
+CLASH_ROYALE_API_KEY = os.getenv("CLASH_ROYALE_API")
+print(CLASH_ROYALE_API_KEY)
 MONGO_URI = os.getenv("MONGO_URI")
-
 
 API_KEY = f'{CLASH_ROYALE_API_KEY}'
 BASE_URL = 'https://api.clashroyale.com/v1'
