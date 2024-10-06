@@ -1,7 +1,6 @@
 from typing import Any, Optional, Dict, List
 from urllib import request, response
 import requests
-from player import CLASH_ROYALE_API_KEY
 import pymongo
 from pymongo import MongoClient
 import os
@@ -14,6 +13,8 @@ MONGO_URL: str = os.getenv("MONGO_URL")
 
 API_KEY: str = f'{CLASH_ROYALE_API_KEY}'
 BASE_URL: str = 'https://api.clashroyale.com/v1'
+
+HASH_URL_ENCODE: str = '%23'
 
 client: MongoClient = MongoClient(f'{MONGO_URL}')
 db = client['clash_royale']
@@ -49,7 +50,7 @@ def insert_players(top_players):
 
 
 def get_player_info(player_tag):
-    url = f'{BASE_URL}/players/%23{player_tag}'
+    url = f'{BASE_URL}/players/{HASH_URL_ENCODE}{player_tag}'
     res = requests.get(url, headers=headers)
 
     if res.status_code == 200:
