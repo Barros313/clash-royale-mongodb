@@ -17,7 +17,7 @@ BASE_URL: str = 'https://api.clashroyale.com/v1'
 
 client: MongoClient = MongoClient(f'{MONGO_URL}')
 db = client['clash_royale']
-collection = db['leaderboards']
+collection = db['players']
 
 headers: Dict[str, str] = {
     'Authorization': f'Bearer {API_KEY}'
@@ -34,13 +34,30 @@ def main() -> None:
     if ranking:
         top_players = filter_top_players(ranking['items'], limit=40)
 
-        collection.insert_many(top_players)
+        insert_players(top_players)
 
         print(f"Top {len(top_players)} players inserted.")
 
         # Store in MongoDB
 
     return None
+
+
+def insert_players(top_players):
+    for player in top_players:
+        collection.insert_one(get_player_info(player['tag'][1:]))
+
+
+def get_player_info(player_tag):
+    url = f'{BASE_URL}/players/%23{player_tag}'
+    res = requests.get(url, headers=headers)
+
+    if res.status_code == 200:
+        return res.json()
+    else:
+        print(f'Failed to fetch player info: {res.status_code}')
+        print(f'{res.reason}')
+        return None
 
 
 def filter_top_players(players: List[Dict[str, Any]], limit: int = 40) -> List[Dict[str, Any]]:

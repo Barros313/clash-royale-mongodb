@@ -24,7 +24,7 @@ headers = {
 
 
 def main():
-    player_tag = 'VRRYUQ8V0'
+    player_tag = '#VRRYUQ8V0'
 
     player_info = get_player_info(player_tag)
 
