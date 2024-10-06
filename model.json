@@ -1,0 +1,35 @@
+[
+    {
+        'tag': '#RJLU02Y', 
+        'name': 'Vito_Craft_BR', 
+        'crowns': 3, 
+        'kingTowerHitPoints': 0, 
+        'princessTowersHitPoints': None, 
+        'clan': {
+            'tag': 
+            '#RY2JV0JC', 
+            'name': 
+            'SkyRed', 
+            'badgeId': 16000123
+        }, 
+        'cards': [
+            {'name': 'Inferno Tower', 
+            'id': 27000003, 
+            'level': 12, 
+            'starLevel': 2, 
+            'maxLevel': 12, 
+            'rarity': 'rare', 
+            'elixirCost': 5,
+            'iconUrls': {
+                'medium': 'https: //api-assets.clashroyale.com/cards/300/GSHY_wrooMMLET6bG_WJB8redtwx66c4i80ipi4gYOM.png'
+                }
+                }, {
+                    'name': 'Princess', 
+                    'id': 26000026, 
+                    'level': 5, 
+                    'starLevel': 1, 
+                    'maxLevel': 6, 
+                    'rarity': 'legendary', 
+                    'elixirCost': 3, 
+                    'iconUrls': {
+                        'medium': 'https://api-assets.clashroyale.com/cards/300/bAwMcqp9EKVIKH3ZLm_m0MqZFSG72zG-vKxpx8aKoVs.png'}}, {'name': 'Goblin Gang', 'id': 26000041, 'level': 14, 'starLevel': 3, 'maxLevel': 14, 'rarity': 'common', 'elixirCost': 3, 'iconUrls': {'medium': 'https://api-assets.clashroyale.com/cards/300/NHflxzVAQT4oAz7eDfdueqpictb5vrWezn1nuqFhE4w.png'}}, {'name': 'Skeleton Army', 'id': 26000012, 'level': 7, 'starLevel': 2, 'maxLevel': 9, 'rarity': 'epic', 'elixirCost': 3, 'iconUrls': {'medium': 'https://api-assets.clashroyale.com/cards/300/fAOToOi1pRy7svN2xQS6mDkhQw2pj9m_17FauaNqyl4.png'}}, {'name': 'Miner', 'id': 26000032, 'level': 4, 'starLevel': 2, 'maxLevel': 6, 'rarity': 'legendary', 'elixirCost': 3, 'iconUrls': {'medium': 'https://api-assets.clashroyale.com/cards/300/Y4yWvdwBCg2FpAZgs8T09Gy34WOwpLZW-ttL52Ae8NE.png'}}, {'name': 'Elite Barbarians', 'id': 26000043, 'level': 12, 'maxLevel': 14, 'rarity': 'common', 'elixirCost': 6, 'iconUrls': {'medium': 'https://api-assets.clashroyale.com/cards/300/C88C5JH_F3lLZj6K-tLcMo5DPjrFmvzIb1R2M6xCfTE.png'}}, {'name': 'Golem', 'id': 26000009, 'level': 6, 'maxLevel': 9, 'rarity': 'epic', 'elixirCost': 8, 'iconUrls': {'medium': 'https://api-assets.clashroyale.com/cards/300/npdmCnET7jmVjJvjJQkFnNSNnDxYHDBigbvIAloFMds.png'}}, {'name': 'Bomber', 'id': 26000013, 'level': 11, 'maxLevel': 14, 'maxEvolutionLevel': 1, 'rarity': 'common', 'elixirCost': 2, 'iconUrls': {'medium': 'https://api-assets.clashroyale.com/cards/300/12n1CesxKIcqVYntjxcF36EFA-ONw7Z-DoL0_rQrbdo.png', 'evolutionMedium': 'https://api-assets.clashroyale.com/cardevolutions/300/12n1CesxKIcqVYntjxcF36EFA-ONw7Z-DoL0_rQrbdo.png'}}, {'name': 'Executioner', 'id': 26000045, 'level': 6, 'maxLevel': 9, 'rarity': 'epic', 'elixirCost': 5, 'iconUrls': {'medium': 'https://api-assets.clashroyale.com/cards/300/9XL5BP2mqzV8kza6KF8rOxrpCZTyuGLp2l413DTjEoM.png'}}, {'name': 'Hog Rider', 'id': 26000021, 'level': 10, 'maxLevel': 12, 'rarity': 'rare', 'elixirCost': 4, 'iconUrls': {'medium': 'https://api-assets.clashroyale.com/cards/300/Ubu0oUl8tZkusnkZf8Xv9Vno5IO29Y-jbZ4fhoNJ5oc.png'}}, {'name': 'Musketeer', 'id': 26000014, 'level': 10, 'maxLevel': 12, 'rarity': 'rare', 'elixirCost': 4, 'iconUrls': {'medium': 'https://api-assets.clashroyale.com/cards/300/Tex1C48UTq9FKtAX-3tzG0FJmc9jzncUZG3bb5Vf-Ds.png'}}, {'name': 'Ice Wizard', 'id': 26000023, 'level': 3, 'maxLevel': 6, 'rarity': 'legendary', 'elixirCost': 3, 'iconUrls': {'medium': 'https://api-assets.clashroyale.com/cards/300/W3dkw0HTw9n1jB-zbknY2w3wHuyuLxSRIAV5fUT1SEY.png'}}], 'supportCards': [], 'globalRank': None, 'elixirLeaked': 0.0}]

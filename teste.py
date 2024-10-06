@@ -2,7 +2,8 @@ import requests
 import pymongo
 from config import BASE_URL, HASH_URL_ENCODE, db, headers
 
-collection = db['casa-da-agua']
+
+collection = db['teste']
 
 def main():
     url = f'{BASE_URL}/players/{HASH_URL_ENCODE}RJLU02Y/battlelog'
@@ -16,6 +17,7 @@ def main():
     battlelog = res.json()
 
     collection['battlelog'].insert_many(battlelog)
+
 
 if __name__ == "__main__":
     main()

@@ -23,5 +23,10 @@ client: MongoClient = MongoClient(f'{MONGO_URI}')
 # Database selection
 db = client['clash_royale']
 
+# Collections
+player_collection = db['players']
+players_battlelog_collection = db['players_battlelog']
+
+
 # Hashtag URL encoded
 HASH_URL_ENCODE: str = '%23'

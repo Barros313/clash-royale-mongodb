@@ -1,22 +1,27 @@
-from leaderboard import filter_top_players, get_ranking
+from battlelog import insert_players_battlelog
+from clan_members import get_clan_members
 from player import insert_player_into_db
 
 
 def main():
-    # Getting top 40 players
-    ranking = get_ranking()
-    if ranking is None:
+    # Getting clan members
+    clan_members = get_clan_members()
+    # Exit if error
+    if clan_members is None:
         return
 
-    top_players = filter_top_players(ranking['items'], limit=40)
-    for player in top_players:
-        insert_player_into_db(player)
+    # Fetch each member information and battlelog than save into database
+    for member in clan_members:
+        insert_player_into_db(member)
+        insert_players_battlelog(member['tag'])
 
-    print(f"Top {len(top_players)} players inserted.")
+    # Print success player insertion message
+    print(f"Top {len(clan_members)} players inserted.")
 
+    # Exit
     return None
 
 
-
+# Call main function
 if __name__ == "__main__":
     main()
