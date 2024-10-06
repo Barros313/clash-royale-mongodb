@@ -1,6 +1,6 @@
-from battlelog import insert_players_battlelog
-from clan_members import get_clan_members
-from player import insert_player_into_db
+from scripts.battlelog import insert_players_battlelog
+from scripts.clan_members import get_clan_members
+from scripts.player import insert_player_into_db
 
 
 def main():
