@@ -9,12 +9,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 CLASH_ROYALE_API_KEY = os.getenv("CLASH_ROYALE_API")
-MONGO_URI = os.getenv("MONGO_URI")
+MONGO_URL = os.getenv("MONGO_URL")
 
 API_KEY = f'{CLASH_ROYALE_API_KEY}'
 BASE_URL = 'https://api.clashroyale.com/v1'
 
-client = MongoClient(f'{MONGO_URI}')
+client = MongoClient(f'{MONGO_URL}')
 db = client['clash_royale']
 collection = db['players']
 
