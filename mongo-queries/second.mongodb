@@ -41,7 +41,7 @@ db.players_battlelog.aggregate([
       $group: {
         _id: "$normalizedDeck",
         totalBattles: { $sum: 1 },
-        win: { $sum: { $cond: [{ $eq: ["$result", "win"] }, 1, 0] } } 
+        wins: { $sum: { $cond: [{ $eq: ["$result", "win"] }, 1, 0] } } 
       }
     },
     {
@@ -57,7 +57,7 @@ db.players_battlelog.aggregate([
         $match: { winRate: { $gte: 50 } }
     },
     {
-        $sort: { winRate: -1 } 
+        $sort: { winRate: -1 }
     }
   ])
   
