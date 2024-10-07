@@ -17,4 +17,42 @@ db.players_battlelog.aggregate([
             }
         }
     },
+    {
+        $project: {
+            normalizedDeck: {
+              $map: {
+                input: {
+                  $sortArray: { input: "$team.cards.name", sortBy: 1 } // Sorts the cards alphabetically
+                },
+                as: "card",
+                in: "$$card"
+              }
+            },
+            result: {
+                $cond: {
+                    if: { $gt: [{ $arrayElemAt: ["$team.crowns", 0] }, { $arrayElemAt: ["$opponent.crowns", 0] }] },
+                    then: "win",
+                    else: "loss"
+                }
+            }
+        }
+    },
+    {
+        $group: {
+            _id: "$normalizedDeck",
+            totalBattles: { $sum: 1 },
+            loss: { $sum: { $cond: [{ $eq: ["$result", "loss"] }, 1, 0] } }
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            selected_cards: "$_id",
+            totalBattles: 1,
+            loss: 1
+        }
+    },
+    {
+        $sort: { loss: -1 }
+    }
 ])
