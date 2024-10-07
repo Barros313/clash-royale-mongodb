@@ -1,4 +1,5 @@
 from routes.battlelog import insert_players_battlelog
+from routes.cards import insert_cards
 from routes.clan_members import get_clan_members
 from routes.player import insert_player_into_db
 
@@ -17,6 +18,10 @@ def main():
 
     # Print success player insertion message
     print(f"Top {len(clan_members)} players inserted.")
+
+    number_of_cards = insert_cards()
+
+    print(f"Inserted {number_of_cards} cards.")
 
     # Exit
     return None

@@ -25,6 +25,7 @@ db = client['clash_royale']
 # Collections
 player_collection = db['players']
 players_battlelog_collection = db['players_battlelog']
+cards_collection = db['cards']
 
 
 # Hashtag URL encoded
