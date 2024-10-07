@@ -1,5 +1,4 @@
 import os
-from typing import override
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
