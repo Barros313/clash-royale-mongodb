@@ -14,6 +14,9 @@ db.players_battlelog.aggregate([
             parsedBattleTime: {
                 $gte: ISODate("2024-10-04T00:00:00.000Z"),
                 $lte: ISODate("2024-10-07T23:59:59.999Z")
+            },
+            "team.cards.name": {
+                $all: ["Firecracker", "The Log", "Zap"]
             }
         }
     },
@@ -39,7 +42,7 @@ db.players_battlelog.aggregate([
     },
     {
         $group: {
-            _id: "$normalizedDeck",
+            _id: null,
             totalBattles: { $sum: 1 },
             loss: { $sum: { $cond: [{ $eq: ["$result", "loss"] }, 1, 0] } }
         }
@@ -47,7 +50,7 @@ db.players_battlelog.aggregate([
     {
         $project: {
             _id: 0,
-            selected_cards: "$_id",
+            selected_cards: ["Firecracker", "The Log", "Zap"],
             totalBattles: 1,
             loss: 1
         }
