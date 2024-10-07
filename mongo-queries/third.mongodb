@@ -1,0 +1,20 @@
+db.players_battlelog.aggregate([
+    {
+        $addFields: {
+          parsedBattleTime: {
+            $dateFromString: {
+                dateString: "$battleTime",
+                format: "%Y%m%dT%H%M%S.%LZ"
+            }
+          }
+        }
+    },
+    {
+        $match: {
+            parsedBattleTime: {
+                $gte: ISODate("2024-10-04T00:00:00.000Z"),
+                $lte: ISODate("2024-10-07T23:59:59.999Z")
+            }
+        }
+    },
+])

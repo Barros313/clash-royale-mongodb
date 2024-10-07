@@ -1,0 +1,47 @@
+db.players_battlelog.aggregate([
+    {
+        $addFields: {
+            parsedBattleTime: {
+                $dateFromString: {
+                    dateString: "$battleTime",
+                    format: "%Y%m%dT%H%M%S.%LZ"
+                }
+            }
+        }
+    },
+  {
+    $match: {
+      "team.cards.name": "Princess",
+      parsedBattleTime: {
+        $gte: ISODate("2024-09-27T00:00:00.000Z"),
+        $lte: ISODate("2024-10-07T23:59:59.999Z")
+      }
+    }
+  },
+  {
+    $project: {
+      _id: 1,
+      result: {
+        $cond: {
+          if: { $gt: [{ $arrayElemAt: ["$team.crowns", 0] }, { $arrayElemAt: ["$opponent.crowns", 0] }] },
+          then: "win",
+          else: "loss"
+        }
+      }
+    }
+  },
+  {
+    $group: {
+      _id: null,
+      totalBattles: { $sum: 1 },
+      wins: { $sum: { $cond: [{ $eq: ["$result", "win"] }, 1, 0] } }
+    }
+  },
+  {
+    $project: {
+      totalBattles: 1,
+      wins: 1,
+      winPercentage: { $multiply: [{ $divide: ["$wins", "$totalBattles"] }, 100] }
+    }
+  }
+]);

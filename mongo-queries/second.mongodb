@@ -1,0 +1,63 @@
+db.players_battlelog.aggregate([
+    {
+        $addFields: {
+          parsedBattleTime: {
+            $dateFromString: {
+                dateString: "$battleTime",
+                format: "%Y%m%dT%H%M%S.%LZ"
+            }
+          }
+        }
+    },
+    {
+        $match: {
+            parsedBattleTime: {
+                $gte: ISODate("2024-10-04T00:00:00.000Z"),
+                $lte: ISODate("2024-10-07T23:59:59.999Z")
+            }
+        }
+    },
+    {
+      $project: {
+        normalizedDeck: {
+          $map: {
+            input: {
+              $sortArray: { input: "$team.cards.name", sortBy: 1 } // Sorts the cards alphabetically
+            },
+            as: "card",
+            in: "$$card"
+          }
+        },
+        result: {
+            $cond: {
+                if: { $gt: [{ $arrayElemAt: ["$team.crowns", 0] }, { $arrayElemAt: ["$opponent.crowns", 0] }] },
+                then: "win",
+                else: "loss"
+            }
+        }
+      }
+    },
+    {
+      $group: {
+        _id: "$normalizedDeck",
+        totalBattles: { $sum: 1 },
+        wins: { $sum: { $cond: [{ $eq: ["$result", "win"] }, 1, 0] } } 
+      }
+    },
+    {
+      $project: {
+        _id: 0, 
+        deck: "$_id", 
+        totalBattles: 1,
+        wins: 1,
+        winRate: { $multiply: [{ $divide: ["$wins", "$totalBattles"] }, 100] } 
+      }
+    },
+    {
+        $match: { winRate: { $gte: 50 } }
+    },
+    {
+        $sort: { winRate: -1 } 
+    }
+  ])
+  
