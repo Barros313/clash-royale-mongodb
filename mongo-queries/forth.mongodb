@@ -1,3 +1,6 @@
+// Calcule a quantidade de vitórias envolvendo a carta X (parâmetro) nos casos em que o vencedor possui Z% (parâmetro) menos 
+// troféus do que o perdedor, a partida durou menos de 2 minutos, e o perdedor derrubou ao menos duas torres do adversário
+
 db.players_battlelog.aggregate([
     {
         $project:  {
@@ -28,7 +31,8 @@ db.players_battlelog.aggregate([
     {
         $match: { 
             percentageDifference: { $gt: 20 },
-            result: "win"
+            result: "win",
+            opponentPrincessTowers: { $gt:2 }
         }
     },
     {

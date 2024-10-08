@@ -1,3 +1,5 @@
+// Calcule a porcentagem de vitórias e derrotas utilizando a carta X(parâmetro) ocorridas em um intervalo de timestamps (parâmetro).
+
 db.players_battlelog.aggregate([
     {
         $addFields: {

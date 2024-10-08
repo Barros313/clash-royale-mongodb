@@ -1,3 +1,5 @@
+// Liste os decks completos que produziram mais de X% (parâmetro) de vitórias ocorridas em um intervalo de timestamps (parâmetro).
+
 db.players_battlelog.aggregate([
     {
         $addFields: {
