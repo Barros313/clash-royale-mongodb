@@ -1,3 +1,46 @@
 db.players_battlelog.aggregate([
-    
+    {
+        $project:  {
+            teamTrophies: { $arrayElemAt: ["$team.startingTrophies", 0] },
+            opponentTrophies: { $arrayElemAt: ["$opponent.startingTrophies", 0] },
+            teamPrincessTowersDestroyed: { $size: "$team.princessTowersHitPoints" },
+            opponentPrincessTowersDestroyed: { $size: "$opponent.princessTowersHitPoints" },
+            result: {
+                $cond: {
+                    if: { $gt: [{ $arrayElemAt: ["$team.crowns", 0] }, { $arrayElemAt: ["$opponent.crowns", 0] }] },
+                    then: "win",
+                    else: "loss"
+                }
+            },
+            percentageDifference: {
+                $multiply: [
+                    {
+                        $divide: [
+                            { $subtract: [{ $arrayElemAt: ["$opponent.startingTrophies", 0] }, { $arrayElemAt: ["$team.startingTrophies", 0] }] },
+                            { $arrayElemAt: ["$team.startingTrophies", 0] }
+                        ]
+                    },
+                    100
+                ]
+            }
+        },
+    },
+    {
+        $match: { 
+            percentageDifference: { $gt: 20 },
+            result: "win"
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            teamTrophies: 1,
+            opponentTrophies: 1,
+            result: 1,
+            percentageDifference: 1
+        }
+    },
+    {
+        $sort: { percentageDifference: -1 }
+    }
 ]);
