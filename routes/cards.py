@@ -30,5 +30,6 @@ def get_cards() -> Optional[List]:
         print(f'{res.reason}')
         return None
 
+
     # Return list
     return list(res.json()['items'])
